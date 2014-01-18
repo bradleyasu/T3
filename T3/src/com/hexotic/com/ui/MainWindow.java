@@ -16,11 +16,15 @@ import javax.swing.JPanel;
 import org.jdesktop.swingx.border.DropShadowBorder;
 
 import com.hexotic.com.util.Constants;
+import com.hexotic.com.util.Log;
 
 
 public class MainWindow extends JFrame{
 
+	private Log log = Log.getInstance();
+	
 	public MainWindow(){
+		log.debug(this, "Main Window Created");
 		setTitle("T3");
 		setUndecorated(true);
 		ClassLoader cldr = this.getClass().getClassLoader();
@@ -39,6 +43,7 @@ public class MainWindow extends JFrame{
 		int y = (dim.height-h)/2;
 		this.setLocation(x, y);
 		this.setVisible(true);
+		
 	}
 	
 	class MainWindowPanel extends JPanel{

@@ -18,6 +18,8 @@ import javax.swing.JPanel;
 
 import org.jdesktop.swingx.border.DropShadowBorder;
 
+import com.hexotic.com.util.Log;
+
 public class Ribbon extends JDialog{
 	
 	private JFrame parent;
@@ -43,6 +45,7 @@ public class Ribbon extends JDialog{
 		int y = this.parent.getLocationOnScreen().y -2;
 		this.setLocation(x, y);
 		this.setVisible(true);
+		Log.getInstance().debug(this, "Ribbon Appended To Window");
 	}
 	class RibbonContentPane extends JPanel{
 		public RibbonContentPane(){
@@ -61,25 +64,17 @@ public class Ribbon extends JDialog{
 		protected void paintComponent(Graphics g) {
 			// Allow super to paint
 			super.paintComponent(g);
-			
 			// Apply our own painting effect
 			Graphics2D g2d = (Graphics2D) g.create();
-			
-
-			
 			g2d.setPaint(new GradientPaint(new Point(0, 0), new Color(0x282828), new Point(0, getHeight()), new Color(0x353535)));  
 			g2d.fillRect(5,5, getWidth()-10, getHeight()-10);
-			
 			g2d.setColor(new Color(0xdadada));
 			g2d.setFont(new Font("Arial", Font.BOLD, 32));
 			g2d.drawString("T", 15, 50);
 			g2d.setFont(new Font("Arial", Font.BOLD, 12));
 			g2d.drawString("3", 37, 30);
-			
 			g2d.setPaint(new Color(0x282828));
 			g2d.fillRoundRect(5,4, getWidth()-10, 5, 2, 2);
-			
-			
 			g2d.dispose();
 			
 		}
