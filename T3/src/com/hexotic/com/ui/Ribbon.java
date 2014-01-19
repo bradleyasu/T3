@@ -10,6 +10,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JDialog;
@@ -22,11 +24,12 @@ import com.hexotic.com.util.Log;
 
 public class Ribbon extends JDialog{
 	
-	private JFrame parent;
+	private JFrame mainWindow;
+	private Ribbon ribbon = this;
 	
 	public Ribbon(JFrame parent){
 		super(parent);
-		this.parent = parent;
+		this.mainWindow = parent;
 		setTitle("T3");
 		setUndecorated(true);
 		ClassLoader cldr = this.getClass().getClassLoader();
@@ -37,15 +40,35 @@ public class Ribbon extends JDialog{
 		this.setBackground(new Color(255,255,255,0));
 		this.setContentPane(new RibbonContentPane());
 		pack();
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setSize(new Dimension(55, 74));
-		int w = this.parent.getSize().width;
-		int h = this.parent.getSize().height;
-		int x = this.parent.getLocationOnScreen().x +15;
-		int y = this.parent.getLocationOnScreen().y -2;
+		int x = this.mainWindow.getLocationOnScreen().x +15;
+		int y = this.mainWindow.getLocationOnScreen().y -2;
 		this.setLocation(x, y);
 		this.setVisible(true);
 		Log.getInstance().debug(this, "Ribbon Appended To Window");
+		
+		parent.addComponentListener(new ComponentListener(){
+			@Override
+			public void componentHidden(ComponentEvent e) {
+			}
+			@Override
+			public void componentMoved(ComponentEvent e) {
+				ribbon.setSize(new Dimension(55, 74));
+				int x = mainWindow.getLocationOnScreen().x +15;
+				int y = mainWindow.getLocationOnScreen().y -2;
+				ribbon.setLocation(x, y);
+			}
+			@Override
+			public void componentResized(ComponentEvent e) {
+				// TODO Auto-generated method stub
+			}
+			@Override
+			public void componentShown(ComponentEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 	}
 	class RibbonContentPane extends JPanel{
 		public RibbonContentPane(){

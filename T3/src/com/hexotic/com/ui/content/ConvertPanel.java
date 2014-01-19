@@ -1,4 +1,4 @@
-package com.hexotic.com.ui;
+package com.hexotic.com.ui.content;
 
 import java.awt.Color;
 import java.awt.GradientPaint;

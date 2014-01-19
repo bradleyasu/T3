@@ -1,74 +1,55 @@
 package com.hexotic.com.ui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
-import com.hexotic.com.util.VerticalFlowLayout;
+import com.hexotic.com.ui.content.ContentController;
+import com.hexotic.com.util.Log;
 
 public class MenuBar extends JPanel{
 
 	private ArrayList<MenuButton> buttons;
-	
-	public MenuBar(){
-		buttons = new ArrayList<MenuButton>();
+	private TitleBar titleBar;
+	private JPanel buttonPanel;
+	public MenuBar(JFrame window){
 		this.setOpaque(false);
-		this.setPreferredSize(new Dimension(20, 110));
-		VerticalFlowLayout layout = new VerticalFlowLayout();
-		layout.setAlignment(VerticalFlowLayout.TOP);
+		this.setPreferredSize(new Dimension(20, 120));
+		this.setBackground(Color.RED);
+		buttons = new ArrayList<MenuButton>();
+		this.setLayout(new BorderLayout());
+
+		FlowLayout layout = new FlowLayout(FlowLayout.LEFT);
 		layout.setVgap(0);
 		layout.setHgap(0);
-		this.setLayout(layout);
-		
+		buttonPanel = new JPanel(layout);
 		JLabel space = new JLabel("");
-		space.setPreferredSize(new Dimension(100,20));
 		space.setOpaque(false);
-		this.add(space);
-		
-		addButton(new MenuButton("Convert"));
+		space.setPreferredSize(new Dimension(100,100));
+		buttonPanel.add(space);
+		MenuButton defaultButton = new MenuButton("Convert");
+		addButton(defaultButton);
 		addButton(new MenuButton("Combine"));
 		addButton(new MenuButton("Create"));
 		
-		JLabel spaceTwo = new JLabel("");
-		spaceTwo.setPreferredSize(new Dimension(450,20));
-		spaceTwo.setOpaque(false);
-		this.add(spaceTwo);
+		buttonPanel.setPreferredSize(new Dimension(20, 110));
+		buttonPanel.setOpaque(false);
 		
+		this.add(new TitleBar("", (MainWindow)window), BorderLayout.NORTH);
+		this.add(buttonPanel, BorderLayout.CENTER);
 		
-		JLabel exit = new JLabel("X");
-		exit.setForeground(new Color(0x484848));
-		exit.setHorizontalAlignment(SwingConstants.RIGHT);
-		exit.setVerticalAlignment(SwingConstants.TOP);
-		exit.setPreferredSize(new Dimension(30,30));
-		exit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		exit.addMouseListener(new MouseListener(){
-			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-			}
-			@Override
-			public void mousePressed(MouseEvent e) {
-			}
-			@Override
-			public void mouseReleased(MouseEvent e) {
-			}
-		});
-		this.add(exit);
+		defaultButton.setClicked(true);
+		ContentController.getInstance().setSelectedPanel("Convert");
+		
 	}
 	
 	public ArrayList<MenuButton> getButtons(){
@@ -78,10 +59,12 @@ public class MenuBar extends JPanel{
 	public void addButton(MenuButton button){
 		button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				ContentController.getInstance().setSelectedPanel(((JButton)e.getSource()).getText());
+				String selected = ((JButton)e.getSource()).getText();
+				Log.getInstance().debug(this, "Action Performed: Selected Menu Button: "+selected);
+				ContentController.getInstance().setSelectedPanel(selected);
 			}
 		});
-		this.add(button);
+		buttonPanel.add(button);
 		buttons.add(button);
 	}
 }

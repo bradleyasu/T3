@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 
 import org.jdesktop.swingx.border.DropShadowBorder;
 
+import com.hexotic.com.ui.content.ContentController;
+import com.hexotic.com.ui.content.ContentPanel;
 import com.hexotic.com.util.Constants;
 import com.hexotic.com.util.Log;
 
@@ -63,7 +65,7 @@ public class MainWindow extends JFrame{
 			this.setLayout(new BorderLayout());
 			
 			/* add content */
-			MenuBar menuBar = new MenuBar();
+			MenuBar menuBar = new MenuBar(p);
 			ContentPanel contentPanel = new ContentPanel();
 			ContentController.getInstance().addObserver(contentPanel);
 			for(MenuButton button : menuBar.getButtons()){

@@ -1,4 +1,4 @@
-package com.hexotic.com.ui;
+package com.hexotic.com.ui.content;
 
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -9,22 +9,21 @@ import java.awt.Point;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class CombinePanel extends JPanel{
+public class CreatePanel extends JPanel{
 
-	public CombinePanel(){
-		this.add(new JLabel("Combine"));
+	public CreatePanel(){
+		this.add(new JLabel("Create"));
 	}
-	
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g.create();
 		g2d.setPaint(new GradientPaint(new Point(0, 0), new Color(0xf8f8f8), new Point(0,
 				getHeight()), new Color(0xfefefe)));  
 		g2d.fillRect(0,0, getWidth(), getHeight());
+		g2d.setPaint(new GradientPaint(new Point(0, getHeight()-10), new Color(0xFF6600), new Point(0, getHeight()), new Color(0x212121)));
 		
-		g2d.setPaint(new GradientPaint(new Point(0, getHeight()-10), new Color(0xCCFF00), new Point(0, getHeight()), new Color(0x212121)));
 		g2d.fillRect(0, getHeight()-4, getWidth(), 4);
-	
+		
 		g2d.dispose();
 		
 	}
