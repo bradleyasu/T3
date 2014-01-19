@@ -8,8 +8,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.net.URL;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -30,8 +32,10 @@ public class MainWindow extends JFrame{
 		setTitle("T3");
 		setUndecorated(true);
 		ClassLoader cldr = this.getClass().getClassLoader();
-		//java.net.URL iconPth   = cldr.getResource("images/icon.png");
-		//this.setIconImage(new ImageIcon(iconPth).getImage());
+		
+		java.net.URL iconPth   = cldr.getResource("images/icon.png");
+		this.setIconImage(new ImageIcon(iconPth).getImage());
+		
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setContentPane(new MainWindowPanel(this));
