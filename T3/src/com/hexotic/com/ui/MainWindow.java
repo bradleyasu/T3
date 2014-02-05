@@ -8,7 +8,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.net.URL;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -49,7 +48,6 @@ public class MainWindow extends JFrame{
 		int y = (dim.height-h)/2;
 		this.setLocation(x, y);
 		this.setVisible(true);
-		
 	}
 	
 	class MainWindowPanel extends JPanel{

@@ -75,7 +75,7 @@ public class TitleBar extends JPanel{
 		super.paintComponent(g);
 		// Apply our own painting effect
 		Graphics2D g2d = (Graphics2D) g.create();
-		g2d.setPaint(new GradientPaint(new Point(0, 0), new Color(0xf8f8f8), new Point(0, getHeight()), new Color(0xe8e8e8)));  
+		g2d.setPaint(new GradientPaint(new Point(0, 0), new Color(0xf8f8f8), new Point(0, getHeight()), new Color(0xf8f8f8)));  
 		g2d.fillRect(0,0, getWidth(), getHeight());
 		g2d.setPaint(new Color(0xdadada));
 		g2d.drawLine(0, getHeight()-1, getWidth(), getHeight()-1);

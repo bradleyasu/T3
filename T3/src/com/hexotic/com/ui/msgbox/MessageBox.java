@@ -26,6 +26,8 @@ import javax.swing.JPanel;
 import org.jdesktop.swingx.JXEditorPane;
 import org.jdesktop.swingx.border.DropShadowBorder;
 
+import com.hexotic.com.util.Log;
+
 public class MessageBox extends JFrame{
 	
 	private String title;
@@ -65,6 +67,7 @@ public class MessageBox extends JFrame{
 		int y = (dim.height-h)/2;
 		this.setLocation(x, y);
 		this.setVisible(true);
+		Log.getInstance().warn(this, "MessageBox: "+title+" - "+message+": "+info);
 	}
 	
 	public String getTitle(){

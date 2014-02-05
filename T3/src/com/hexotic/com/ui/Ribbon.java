@@ -2,6 +2,7 @@ package com.hexotic.com.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -9,23 +10,27 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import org.jdesktop.swingx.JXCollapsiblePane;
 import org.jdesktop.swingx.border.DropShadowBorder;
 
+import com.hexotic.com.ui.about.AboutBox;
 import com.hexotic.com.util.Log;
 
 public class Ribbon extends JDialog{
 	
 	private JFrame mainWindow;
 	private Ribbon ribbon = this;
+	private JXCollapsiblePane infoContainer;
 	
 	public Ribbon(JFrame parent){
 		super(parent);
@@ -46,6 +51,25 @@ public class Ribbon extends JDialog{
 		this.setLocation(x, y);
 		this.setVisible(true);
 		Log.getInstance().debug(this, "Ribbon Appended To Window");
+		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		this.addMouseListener(new MouseListener(){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new AboutBox();
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			}
+		});
 		
 		parent.addComponentListener(new ComponentListener(){
 			@Override
@@ -70,6 +94,8 @@ public class Ribbon extends JDialog{
 		});
 		
 	}
+
+	
 	class RibbonContentPane extends JPanel{
 		public RibbonContentPane(){
 			this.setBackground(new Color(0xffffff));

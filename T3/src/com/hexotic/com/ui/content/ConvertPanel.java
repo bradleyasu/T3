@@ -1,9 +1,12 @@
 package com.hexotic.com.ui.content;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
 import java.awt.Point;
 
 import javax.swing.JLabel;
@@ -11,8 +14,38 @@ import javax.swing.JPanel;
 
 public class ConvertPanel extends JPanel{
 	
+	private JPanel leftPanel;
+	private JPanel rightPanel;
+	
 	public ConvertPanel(){
-		this.add(new JLabel("Convert"));
+		this.setLayout(new GridLayout(1,2,0,0));
+		createLeftPanel();
+		createRightPanel();
+		
+		
+	}
+	
+	private void createLeftPanel(){
+		leftPanel = new JPanel();
+		FlowLayout layout = new FlowLayout();
+		layout.setAlignment(FlowLayout.CENTER);
+		leftPanel.setLayout(layout);
+		leftPanel.setBackground(Color.RED);
+		leftPanel.setPreferredSize(new Dimension(200, 400));
+		leftPanel.setOpaque(false);
+		this.add(leftPanel);
+	}
+	
+	public void createRightPanel(){
+		rightPanel = new JPanel();
+		FlowLayout layout = new FlowLayout();
+		layout.setAlignment(FlowLayout.CENTER);
+		rightPanel.setLayout(layout);
+		rightPanel.setBackground(Color.GREEN);
+		rightPanel.setPreferredSize(new Dimension(200, 400));
+		rightPanel.setOpaque(false);
+		
+		this.add(rightPanel);
 	}
 
 	protected void paintComponent(Graphics g) {

@@ -24,8 +24,6 @@ public class Main {
 		try{
 			JFrame main = new MainWindow();
 			new Ribbon(main);
-			Object n = null;
-			n.toString();
 		} catch (Exception e){
 			new MessageBox(MessageBox.MSG_2, "Good God","An unknown terrible error happened", e.toString()+"\n\n"+Constants.SUPPORT_INFO);
 			Log.getInstance().error(new Object(), "CRITICAL SOFTWARE ERROR", e);

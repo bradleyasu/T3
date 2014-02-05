@@ -44,7 +44,7 @@ public class MenuButton extends JButton implements Observer{
         	g2d.setPaint(new GradientPaint(new Point(0, 10), new Color(0xf8f8f8), new Point(0, 0), new Color(0xe8e8e8)));
          } else {
         	 if(isClicked){
-        		 g2d.setPaint(new GradientPaint(new Point(0, 2), new Color(0xf8f8f8), new Point(0, 0), new Color(0x727272)));
+        		 g2d.setPaint(new GradientPaint(new Point(0, 2), new Color(0xf8f8f8), new Point(0, 0), new Color(0xdadada)));
         	 } else {
         		 g2d.setPaint(new GradientPaint(new Point(0, 0), new Color(0xf8f8f8), new Point(0, getHeight()), new Color(0xf8f8f8)));
         	 }
