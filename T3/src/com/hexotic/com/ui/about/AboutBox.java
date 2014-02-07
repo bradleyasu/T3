@@ -27,7 +27,16 @@ import org.jdesktop.swingx.border.DropShadowBorder;
 import com.hexotic.com.ui.msgbox.MessageBox;
 import com.hexotic.com.ui.msgbox.XButton;
 import com.hexotic.com.util.Constants;
-
+/**
+ * The about box.  Where all things about T3 are displayed.
+ * No one ever looks at the about box, yet somehow you're looking at the 
+ * code for the about box.  You're weird.  But anyway, it's just a simple
+ * window that reads in a text document in the 'docs' resource folder that
+ * is named 'about.txt'
+ * 
+ * @author Bradley Sheets
+ *
+ */
 public class AboutBox extends JFrame{
 
 	public AboutBox(){

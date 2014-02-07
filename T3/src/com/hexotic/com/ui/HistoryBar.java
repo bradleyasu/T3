@@ -14,12 +14,23 @@ import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 
 import org.jdesktop.swingx.JXCollapsiblePane;
-
+/**
+ * Like the History Channel, the History Bar is all about Aliens!
+ * 
+ * No, that's not right.  This is more serious.  The HistoryBar will 
+ * show all the operations that are currently being performed, pending, or
+ * have already completed.  You can cancel pending and processing items and
+ * open or delete completed items.
+ * 
+ * @author Bradley Sheets
+ *
+ */
 public class HistoryBar extends JPanel{
 
-	private boolean collapsed = true;
-	private JXCollapsiblePane contentPanel;
-	private HistoryBarContent content;
+	private boolean collapsed = true;  // Well, we don't want it open on startup
+	private JXCollapsiblePane contentPanel;  // This does that fancy animation thingy
+	private HistoryBarContent content; // This is what holds the T3Items
+	
 	public HistoryBar(){
 		BorderLayout layout = new BorderLayout();
 		layout.setHgap(0);
@@ -42,6 +53,14 @@ public class HistoryBar extends JPanel{
 		this.repaint();
 	}
 	
+	/**
+	 * Change the state of the history bar.  All this does
+	 * is set a flag that states the bar is open or closed.  the 
+	 * updateHistoryBar is responsible for the actual opening and
+	 * closing
+	 * 
+	 * @param state 
+	 */
 	public void setState(boolean state){
 		collapsed = state;
 	}
@@ -63,6 +82,13 @@ public class HistoryBar extends JPanel{
 	}
 	
 	
+	/**
+	 * This is a simple way to create a toggle/control bar for the history
+	 * bar
+	 * 
+	 * @author Bradley Sheets
+	 *
+	 */
 	class HistoryBarHeader extends JPanel{
 		public HistoryBarHeader(){
 			this.setPreferredSize(new Dimension(20,20));

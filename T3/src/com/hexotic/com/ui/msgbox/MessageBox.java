@@ -27,7 +27,15 @@ import org.jdesktop.swingx.JXEditorPane;
 import org.jdesktop.swingx.border.DropShadowBorder;
 
 import com.hexotic.com.util.Log;
-
+/**
+ * MessageBox V1.1
+ * 
+ * This is a working version of a standalone message box.  This will soon be
+ * apart of a larger UI library once it has been made more modular.
+ * 
+ * @author Bradley Sheets
+ *
+ */
 public class MessageBox extends JFrame{
 	
 	private String title;

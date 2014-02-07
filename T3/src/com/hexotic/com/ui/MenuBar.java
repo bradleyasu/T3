@@ -16,6 +16,13 @@ import javax.swing.JPanel;
 import com.hexotic.com.ui.content.ContentController;
 import com.hexotic.com.util.Log;
 
+/**
+ * The menu bar is the large menu display at the top of the window.
+ * It consists of very large buttons to provide a simplistic UI
+ * 
+ * @author Bradley Sheets
+ *
+ */
 public class MenuBar extends JPanel{
 
 	private ArrayList<MenuButton> buttons;
@@ -52,10 +59,19 @@ public class MenuBar extends JPanel{
 		
 	}
 	
+	/**
+	 * Get all of the buttons that are in the menu
+	 * @return List of Buttons
+	 */
 	public ArrayList<MenuButton> getButtons(){
 		return buttons;
 	}
 	
+	/**
+	 * Add A Button to the Menu
+	 * 
+	 * @param button MenuButton to add
+	 */
 	public void addButton(MenuButton button){
 		button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){

@@ -21,13 +21,17 @@ import com.hexotic.com.ui.content.ContentPanel;
 import com.hexotic.com.util.Constants;
 import com.hexotic.com.util.Log;
 
-
+/**
+ * Here is the mystical and magical main window.
+ * 
+ * @author Bradley Sheets
+ *
+ */
 public class MainWindow extends JFrame{
 
 	private Log log = Log.getInstance();
 	
 	public MainWindow(){
-		log.debug(this, "Main Window Created");
 		setTitle("T3");
 		setUndecorated(true);
 		ClassLoader cldr = this.getClass().getClassLoader();
@@ -37,6 +41,9 @@ public class MainWindow extends JFrame{
 		
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// Alright, so we want a fancy window with no chrome and
+		// some shadow.  This is a little trick I'm using to accomplish that.
 		this.setContentPane(new MainWindowPanel(this));
 		this.setBackground(new Color(0, 255, 0, 0));
 		pack();
@@ -48,6 +55,9 @@ public class MainWindow extends JFrame{
 		int y = (dim.height-h)/2;
 		this.setLocation(x, y);
 		this.setVisible(true);
+		
+		// If we made it here, go ahead and log that the window should be available
+		log.debug(this, "Main Window Created");
 	}
 	
 	class MainWindowPanel extends JPanel{
@@ -56,6 +66,8 @@ public class MainWindow extends JFrame{
 			parent = p;
 			this.setBackground(new Color(0xffffff));
 			this.setBorder(BorderFactory.createLineBorder(new Color(0x212121)));
+			
+			// Put on those fancy shadows
 			DropShadowBorder shadow = new DropShadowBorder();
 			shadow.setShadowColor(Color.BLACK);
 			shadow.setShowLeftShadow(true);
@@ -63,10 +75,12 @@ public class MainWindow extends JFrame{
 			shadow.setShowBottomShadow(true);
 			shadow.setShowTopShadow(true);
 			this.setBorder(shadow);
+			
+			// And we do want to be able to see the window
 			setOpaque(true);
 			this.setLayout(new BorderLayout());
-			
-			/* add content */
+
+			// Add all of the children components
 			MenuBar menuBar = new MenuBar(p);
 			ContentPanel contentPanel = new ContentPanel();
 			ContentController.getInstance().addObserver(contentPanel);
@@ -76,9 +90,9 @@ public class MainWindow extends JFrame{
 			this.add(menuBar, BorderLayout.NORTH);
 			this.add(new HistoryBar(), BorderLayout.SOUTH);
 			this.add(contentPanel, BorderLayout.CENTER);
-			
-			
 		}
+		
+		
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			Graphics2D g2d = (Graphics2D) g.create();

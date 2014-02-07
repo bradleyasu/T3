@@ -25,7 +25,16 @@ import org.jdesktop.swingx.border.DropShadowBorder;
 
 import com.hexotic.com.ui.about.AboutBox;
 import com.hexotic.com.util.Log;
-
+/**
+ * That fancy ribbon that is at the top of windows.
+ * How is it done?  It's a dialog box that is attached to a parent
+ * window whose reference is passed through the constructor. TaDa
+ * 
+ * I feel like this is currently hacky, but it'll do for now.
+ * 
+ * @author Bradley Sheets
+ *
+ */
 public class Ribbon extends JDialog{
 	
 	private JFrame mainWindow;

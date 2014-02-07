@@ -37,7 +37,7 @@ public class ConvertPanel extends JPanel{
 		leftPanel.setPreferredSize(new Dimension(200, 400));
 		leftPanel.setOpaque(debug);
 		
-		leftPanel.add(new DragNDropPanel());
+		leftPanel.add(new DragNDropPanel(100, 100, new Color(0xdadada)));
 		
 		this.add(leftPanel);
 	}

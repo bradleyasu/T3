@@ -4,7 +4,10 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 
 /**
- * Singleton class for writing software logs
+ * It's pretty simple.  This is a singleton class for writing software logs
+ * 
+ * The reason I do it this way is so I have a centralized location of log formats.
+ * I can change the output format on the fly
  * 
  * @author Bradley Sheets
  *

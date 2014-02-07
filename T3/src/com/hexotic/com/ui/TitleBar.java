@@ -17,7 +17,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.hexotic.com.util.Log;
-
+/**
+ * The title bar provides a bar that can drag a window without
+ * any default OS title bar.  Intended for windows without chrome (obviously)
+ * 
+ * @author Bradley Sheets
+ *
+ */
 public class TitleBar extends JPanel{
 	private JLabel close;
 	private int posX = 0;

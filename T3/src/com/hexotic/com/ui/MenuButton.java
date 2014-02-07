@@ -13,11 +13,17 @@ import java.util.Observer;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-
+/**
+ * These buttons can be added to a MenuBar object
+ * 
+ * @author Bradley Sheets
+ *
+ */
 public class MenuButton extends JButton implements Observer{
 
 	private String label = "";
 	boolean isClicked = false;
+	
 	public MenuButton(String text){
 		super(text);
 		super.setContentAreaFilled(false);
@@ -31,21 +37,27 @@ public class MenuButton extends JButton implements Observer{
 //		this.setHorizontalAlignment(SwingConstants.LEFT);
 	}
 
+	/**
+	 * Sets the current state of the button.  Is it clicked?
+	 */
 	public void setClicked(boolean click){
 		isClicked = click;
 	}
 	
 	 protected void paintComponent(Graphics g) {
 		 Graphics2D g2d = (Graphics2D) g.create();
+		 
+		 // If the button is clicked paint it like this
          if (getModel().isPressed()) {
         	 g2d.setPaint(new GradientPaint(new Point(0, 10), new Color(0xf8f8f8), new Point(0, 0), new Color(0xe8e8e8)));
         	 setClicked(true);
          } else if (getModel().isRollover() && !isClicked) {
+        	// If the button hasn't been clicked yet, but the mouse rolls over, paint it like this
         	g2d.setPaint(new GradientPaint(new Point(0, 10), new Color(0xf8f8f8), new Point(0, 0), new Color(0xe8e8e8)));
          } else {
-        	 if(isClicked){
+        	 if(isClicked){ // If it is clicked, just paint it like this to show it's clicked
         		 g2d.setPaint(new GradientPaint(new Point(0, 2), new Color(0xf8f8f8), new Point(0, 0), new Color(0xdadada)));
-        	 } else {
+        	 } else { // Otherwise, just paint the button as normal
         		 g2d.setPaint(new GradientPaint(new Point(0, 0), new Color(0xf8f8f8), new Point(0, getHeight()), new Color(0xf8f8f8)));
         	 }
          }
@@ -59,5 +71,4 @@ public class MenuButton extends JButton implements Observer{
 		this.revalidate();
 		this.repaint();
 	}
-
 }

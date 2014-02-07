@@ -20,20 +20,37 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import com.hexotic.com.ui.msgbox.MessageBox;
 import com.hexotic.com.util.Log;
+
+/**
+ * DragNDropPanel
+ * 
+ * Well, that's what it is.  This is a component that can be added to any other
+ * swing component to form a drag and drop panel.  
+ * 
+ * @author Bradley Sheets
+ *
+ */
 
 public class DragNDropPanel extends JPanel{
 
 	private List<File> files;
+	private int width;
+	private int height;
+	private Color color; // The panel is transparent, but the squiggles and text aren't
 	
-	public DragNDropPanel() {
+	public DragNDropPanel(int width, int height, Color color) {
+		this.width = width;
+		this.height = height;
+		this.color = color;
 		
 		// Create the drag and drop listener
 	    DNDListener ddListener = new DNDListener();
 
 	    // Connect the label with a drag and drop listener
 	    new DropTarget(this, ddListener);
-	    this.setPreferredSize(new Dimension(100,100));
+	    this.setPreferredSize(new Dimension(width, height));
 	    this.setOpaque(false);
 	    
 	}
@@ -42,12 +59,12 @@ public class DragNDropPanel extends JPanel{
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g.create();
 		// draw RoundRectangle2D.Double
-		g2.setColor(new Color(0xdadada));
+		g2.setColor(color);
 		float dash1[] = {8.0f};
 		BasicStroke dashed = new BasicStroke(4.0f,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,10.0f, dash1, 0.0f);
 		g2.setStroke(dashed);
 		g2.setFont(new Font("Arial", Font.BOLD, 14));
-		g2.drawString("Drag Here",  15, 55);
+		g2.drawString("Drag Here",  15, 55); // TODO This cannot be magic.  We need to calculate this
 		g2.draw(new RoundRectangle2D.Double(1,1, getWidth()-2, getHeight()-2, 10, 10));
 		
 		g2.dispose();
@@ -78,9 +95,9 @@ public class DragNDropPanel extends JPanel{
 						}
 					}
 				} catch (Exception e) {
-					// Print out the error stack
+					// Weellll poop.  Something happened damn it.  
 					Log.getInstance().error(this, "Couldn't Drag And Drop", e);
-					
+					new MessageBox(MessageBox.MSG_5, "Error Reading Dropped Data", "Don't panic.  Sometimes shit happens", e.getLocalizedMessage());
 				}
 			}
 			event.dropComplete(true);
