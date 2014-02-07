@@ -9,13 +9,16 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Point;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import com.hexotic.com.controls.DragNDropPanel;
 
 public class ConvertPanel extends JPanel{
 	
 	private JPanel leftPanel;
+	private JPanel splitPanel;
 	private JPanel rightPanel;
+	private boolean debug = false;
 	
 	public ConvertPanel(){
 		this.setLayout(new GridLayout(1,2,0,0));
@@ -32,8 +35,23 @@ public class ConvertPanel extends JPanel{
 		leftPanel.setLayout(layout);
 		leftPanel.setBackground(Color.RED);
 		leftPanel.setPreferredSize(new Dimension(200, 400));
-		leftPanel.setOpaque(false);
+		leftPanel.setOpaque(debug);
+		
+		leftPanel.add(new DragNDropPanel());
+		
 		this.add(leftPanel);
+	}
+	
+	public void createSplitPanel(){
+		splitPanel = new JPanel();
+		FlowLayout layout = new FlowLayout();
+		layout.setAlignment(FlowLayout.CENTER);
+		splitPanel.setLayout(layout);
+		splitPanel.setBackground(Color.BLUE);
+		splitPanel.setPreferredSize(new Dimension(40, 400));
+		splitPanel.setOpaque(debug);
+		
+		this.add(splitPanel);
 	}
 	
 	public void createRightPanel(){
@@ -43,7 +61,7 @@ public class ConvertPanel extends JPanel{
 		rightPanel.setLayout(layout);
 		rightPanel.setBackground(Color.GREEN);
 		rightPanel.setPreferredSize(new Dimension(200, 400));
-		rightPanel.setOpaque(false);
+		rightPanel.setOpaque(debug);
 		
 		this.add(rightPanel);
 	}
