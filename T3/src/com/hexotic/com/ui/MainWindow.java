@@ -20,6 +20,7 @@ import com.hexotic.com.ui.content.ContentController;
 import com.hexotic.com.ui.content.ContentPanel;
 import com.hexotic.com.util.Constants;
 import com.hexotic.com.util.Log;
+import com.hexotic.com.util.Resources;
 
 /**
  * Here is the mystical and magical main window.
@@ -34,10 +35,8 @@ public class MainWindow extends JFrame{
 	public MainWindow(){
 		setTitle("T3");
 		setUndecorated(true);
-		ClassLoader cldr = this.getClass().getClassLoader();
 		
-		java.net.URL iconPth   = cldr.getResource("images/icon.png");
-		this.setIconImage(new ImageIcon(iconPth).getImage());
+		this.setIconImage(Resources.getInstance().getImage("icon.png"));
 		
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

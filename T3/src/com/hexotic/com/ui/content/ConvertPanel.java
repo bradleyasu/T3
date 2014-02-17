@@ -3,12 +3,14 @@ package com.hexotic.com.ui.content;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Point;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.hexotic.com.controls.DragNDropPanel;
@@ -37,7 +39,19 @@ public class ConvertPanel extends JPanel{
 		leftPanel.setPreferredSize(new Dimension(200, 400));
 		leftPanel.setOpaque(debug);
 		
+		JLabel prepend = new JLabel("Convert ");
+		prepend.setFont(new Font("Arial", Font.BOLD, 27));
+		prepend.setPreferredSize(new Dimension(150, 250));
+		prepend.setHorizontalAlignment(JLabel.RIGHT);
+		leftPanel.add(prepend);
+		
 		leftPanel.add(new DragNDropPanel(100, 100, new Color(0xdadada)));
+		
+		JLabel append = new JLabel(" Into:");
+		append.setFont(new Font("Arial", Font.BOLD, 27));
+		append.setPreferredSize(new Dimension(120, 200));
+		append.setHorizontalAlignment(JLabel.LEFT);
+		leftPanel.add(append);
 		
 		this.add(leftPanel);
 	}

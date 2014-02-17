@@ -40,6 +40,7 @@ public class Ribbon extends JDialog{
 	private JFrame mainWindow;
 	private Ribbon ribbon = this;
 	private JXCollapsiblePane infoContainer;
+	private boolean open = false;
 	
 	public Ribbon(JFrame parent){
 		super(parent);
@@ -61,10 +62,17 @@ public class Ribbon extends JDialog{
 		this.setVisible(true);
 		Log.getInstance().debug(this, "Ribbon Appended To Window");
 		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		
 		this.addMouseListener(new MouseListener(){
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new AboutBox();
+				if(open){
+					close();
+				} else {
+					open();
+				}
+				open = !open;
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -79,6 +87,8 @@ public class Ribbon extends JDialog{
 			public void mouseReleased(MouseEvent e) {
 			}
 		});
+		
+
 		
 		parent.addComponentListener(new ComponentListener(){
 			@Override
@@ -102,6 +112,18 @@ public class Ribbon extends JDialog{
 			}
 		});
 		
+	}
+	
+	private void open(){
+		this.setSize(new Dimension(mainWindow.getWidth()-50, mainWindow.getHeight()-50));
+		this.revalidate();
+		this.repaint();
+	}
+	
+	private void close() {
+		this.setSize(new Dimension(55, 74));
+		this.revalidate();
+		this.repaint();
 	}
 
 	

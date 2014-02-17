@@ -26,7 +26,7 @@ public class TXT extends ImageIcon implements Type{
 	@Override
 	public File getFile() {
 		// TODO Auto-generated method stub
-		return null;
+		return file;
 	}
 
 	@Override

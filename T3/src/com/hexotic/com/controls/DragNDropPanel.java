@@ -58,7 +58,7 @@ public class DragNDropPanel extends JPanel{
 	    // Connect the label with a drag and drop listener
 	    new DropTarget(this, ddListener);
 	    this.setPreferredSize(new Dimension(width, height));
-	    this.setOpaque(true);
+	    this.setOpaque(false);
 	    
 	}
 	
@@ -87,6 +87,10 @@ public class DragNDropPanel extends JPanel{
 				g2.drawImage(files.get(i).getImage(), x +(i*2), x + (i*2), 48, 48, null);
 				i++;
 			}
+			g2.setColor(Color.black);
+			g2.setFont(new Font("Arial", Font.BOLD, 11));
+			int centerX = (files.size() < 10 ? (width/2-18) : (width/2-21));
+			g2.drawString(files.size()+" files",  centerX, height-5);
 		}
 		
 		g2.dispose();
